@@ -39,7 +39,7 @@ function generateMessageList(data) {
     addNewMessage(data.messages[i].text, data.messages[i].author)
     messageId++;
   }
-  scrollToLastMessage();
+  // scrollToLastMessage();
 }
 
 function sendMessage() {
