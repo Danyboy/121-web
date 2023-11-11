@@ -40,7 +40,9 @@ function sendMessage() {
   addNewMessage(messageText, authorName)
   $.ajax({
     url: "./app/send.php",
-    method: "POST",    
+    method: "POST",
+    dataType: "json",
+    contentType: "application/json; charset=utf-8",
     data: {
       "date": Date.now(),
       "author": authorName,
