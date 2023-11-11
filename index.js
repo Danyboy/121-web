@@ -16,6 +16,11 @@ function myLogin(){
 fetchMessage();
 
 function fetchMessage() {
+  if (!currentUser){
+    myHistoryTimeout();
+    return;
+  }
+
   console.log("Get messages")
   $.get("./app/chats/stas_XFRTS4FT/start_01.json", function (data, status) {
     if (data) {
