@@ -23,7 +23,7 @@ function fetchMessage() {
     }
   });
 
-  myHistoryTimeout();
+  // myHistoryTimeout();
 }
 
 function generateMessageList(data) {
