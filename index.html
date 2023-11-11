@@ -45,7 +45,7 @@
                 <button class="open-button" id="myLogin" onclick="openForm()">Login / Register</button>
                 <div class="send-container">
                     <div class="form-field">
-                        <input type="text" autofocus id="current_message_text" class="text-filed" action>
+                        <input type="text" id="current_message_text" class="text-filed" action>
                         </input>
                     </div>
                     <div class="button-field">
@@ -55,8 +55,6 @@
             </div>
             </div>
         </div>
-
-
 
     <div class="my-popup" id="myForm">
         <form class="form-container">
@@ -84,8 +82,10 @@
 
         if (!currentUser){
             openForm();
+            $("#Nickname").focus();
         } else {
             $("#myLogin").hide();
+            $("#current_message_text").focus();
         }
     </script>
 </body>
