@@ -17,7 +17,7 @@ if (!empty($jsonData)) {
   $inplement = file_get_contents($chatFile);
   $tempArray = json_decode($inplement, true);
   array_push($tempArray['messages'], $data);
-  $jsonData = json_encode($tempArray);
+  $jsonData = json_encode($tempArray, JSON_UNESCAPED_UNICODE);
   file_put_contents($chatFile, $jsonData);
 
   var_dump(http_response_code(200));

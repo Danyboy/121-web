@@ -23,8 +23,7 @@ function fetchMessage() {
     }
   });
 
-  scrollToLastMessage();
-  myHistoryTimeout();
+  // myHistoryTimeout();
 }
 
 function generateMessageList(data) {
@@ -32,10 +31,10 @@ function generateMessageList(data) {
     addNewMessage(data.messages[i].text, data.messages[i].author)
     messageId++;
   }
+  scrollToLastMessage();
 }
 
 function sendMessage() {
-  messageId++;
   authorName = currentUser;
 
   var messageText = $("#current_message_text").val();
@@ -64,10 +63,12 @@ function sendMessage() {
 
   $("#current_message_text").val('');
   scrollToLastMessage();
+  messageId++;
 }
 
 function scrollToLastMessage(){
-  document.getElementById(messageId).scrollIntoView();
+  console.log(messageId - 1);
+  document.getElementById(messageId - 1).scrollIntoView();
 }
 
 function addNewMessage(messageText, authorName) {
