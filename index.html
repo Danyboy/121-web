@@ -2,14 +2,17 @@
 
 <head>
     <title>121 messanger</title>
-    <link rel="stylesheet" href="./style.css" />
-    <link rel="stylesheet" href="./chat.css" />
+    <link rel="stylesheet" href="./css/chat.css" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/login.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="./index.js"></script>
 
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta property="og:type" content="website">
     <meta property="og:url" content="http://121.efnez.ru/">
-    <meta property="og:image" content="http://121.efnez.ru/images/polya.jpg">
+    <meta property="og:image" content="http://121.efnez.ru/images/stas.png">
     <meta property="og:title" content="121 messanger">
 </head>
 
@@ -33,34 +36,80 @@
 
         <div class="messages">
             <h2>Messages</h2>
-            <div class="current_chat_messages">
-                <div class="chat_row">
-                    <div class="received">
-                        <div class="message" id="1">
-                            <div speech-bubble pright acenter message-color>
-                                <div class="title">Dany</div>
-                                <p>Привет! Давай сделаем свой месенджер?</p>
-                            </div>
-                        </div>
-                        <div class="message" id="2">
-                            <div speech-bubble pleft acenter message-color>
-                                <div class="title">Stas</div>
-                                <p>Привет, давай!</p>
-                            </div>
-                        </div>
-                        <div class="message" id="1">
-                            <div speech-bubble pright acenter message-color>
-                                <div class="title">Dany</div>
-                                <p>Назовём 1to1 или 121</p>
-                            </div>
-                        </div>
+            <div class="chat-row">
+                <div class="messages-fields" id="messages">
+                    <div class="message" speech-bubble pright acenter message-color id="1">
+                        <div class="title">Dany</div>
+                        <p>Привет! Давай сделаем свой месенджер?</p>
                     </div>
-                    <div class="sent">
+                    <div class="message" speech-bubble pleft acenter message-color id="2">
+                        <div class="title">Stas</div>
+                        <p>Привет, давай!</p>
+                    </div>
+                    <div class="message" speech-bubble pright acenter message-color id="1">
+                        <div class="title">Dany</div>
+                        <p>Назовём 1to1 или 121</p>
+                    </div>
+                    <div class="message" speech-bubble pright acenter message-color id="1">
+                        <div class="title">Dany</div>
+                        <p>Привет! Давай сделаем свой месенджер?</p>
+                    </div>
+                    <div class="message" speech-bubble pleft acenter message-color id="2">
+                        <div class="title">Stas</div>
+                        <p>Привет, давай!</p>
+                    </div>
+                    <div class="message" speech-bubble pright acenter message-color id="1">
+                        <div class="title">Dany</div>
+                        <p>Назовём 1to1 или 121</p>
+                    </div>
+                    <div class="message" speech-bubble pright acenter message-color id="1">
+                        <div class="title">Dany</div>
+                        <p>Назовём 1to1 или 121</p>
                     </div>
                 </div>
+                <div class="message-empty"></div>
             </div>
         </div>
     </div>
+
+    <div class="bottom-panel">
+        <button class="open-button" onclick="openForm()">Login / Register</button>
+        <div class="send-container">
+            <div class="form-field">
+                <input type="text" autofocus id="current_message_text" class="text-filed" action>
+                </input>
+            </div>
+            <div class="button-field">
+                <button type="submit" onclick="sendMessage()" id="messageSend">Send</button>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="form-popup" id="myForm">
+        <form action="/action_page.php" class="form-container">
+            <h1>Login</h1>
+
+            <label for="email"><b>Email</b></label>
+            <input type="text" placeholder="Enter Email" name="email" required>
+
+            <label for="psw"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="psw" required>
+
+            <button type="submit" class="btn">Login</button>
+            <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+        </form>
+    </div>
+
+    <script>
+        function openForm() {
+            document.getElementById("myForm").style.display = "block";
+        }
+
+        function closeForm() {
+            document.getElementById("myForm").style.display = "none";
+        }
+    </script>
 </body>
 
 </html>

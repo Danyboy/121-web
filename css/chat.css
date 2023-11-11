@@ -4,11 +4,15 @@
   --bbColor: grey;
   --bbArrowSize: 1.5rem;
   --bbBorderRadius: 0.25rem;
-  --bbPadding: 1rem;
+  --bbPadding: 10pt;
   background: var(--bbColor);
   border-radius: var(--bbBorderRadius);
   padding: var(--bbPadding);
   position: relative;
+
+  /* padding: 4pt;
+  box-sizing: border-box;
+  margin: 4pt; */
 }
 
 [speech-bubble]::before{
@@ -117,13 +121,13 @@
   transform: scaleY(-1)
 }
 
-/* for demo */
+/* for demo
 *{
   margin: 0;
   padding: 2pt;
   box-sizing: border-box;
   cursor: default
-}
+} */
 
 /* body{
   max-width: 60rem;
