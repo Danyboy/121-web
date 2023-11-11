@@ -88,7 +88,7 @@ function addNewMessage(messageText, authorName) {
 }
 
 function myHistoryTimeout() {
-  myTimer = 1000 * 3;
+  myTimer = 1000 * 5;
   setTimeout(function () {
     fetchMessage();
   }, myTimer);
