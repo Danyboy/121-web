@@ -1,6 +1,8 @@
 <?php
 
 if (!empty($_POST['data'])) {
+
+  var_dump($_POST);
   
   $chatId = "stas_XFRTS4FT/start_01.json";
 
