@@ -12,6 +12,7 @@ function myLogin(){
   localStorage.setItem("currentUser", nickname);
   currentUser = nickname;
   $("#myLogin").hide();
+  $("#current_message_text").focus();
 }
 
 fetchMessage();
