@@ -16,7 +16,7 @@ fetchMessage();
 
 function fetchMessage() {
   console.log("Get messages")
-  $.get("./chats/stas_XFRTS4FT/start_01.json", function (data, status) {
+  $.get("./app/chats/stas_XFRTS4FT/start_01.json", function (data, status) {
     if (data) {
       $("#messages").empty()
       generateMessageList(data);
@@ -43,12 +43,12 @@ function sendMessage() {
     method: "POST",
     dataType: "json",
     contentType: "application/json; charset=utf-8",
-    data: {
+    data: JSON.stringify({
       "date": Date.now(),
       "author": authorName,
       "author_id": "2",
       "text": messageText
-    },
+    }),
     success: function (response) {
       $("#current_message_text").val('')
     },
