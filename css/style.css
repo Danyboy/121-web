@@ -2,7 +2,7 @@ body {
   /* display: flex;
   flex-direction: column; */
 
-  height: 80%;
+  height: 92%;
 
   background: var(--background-color);
   font-family: system-ui, -apple-system, "Roboto", sans-serif;
@@ -61,7 +61,6 @@ p {
   display: flex;
   flex-direction: column;
   /* align-self: flex-end; */
-
 }
 
 .chat-row {
@@ -70,9 +69,8 @@ p {
   /* scroll */
   flex: 1 1 auto;
   overflow: auto;
-  overflow-y: scroll;
+  /* overflow-y: scroll; */
   min-height: 0px;
-  
 }
 
 .message {
@@ -83,8 +81,7 @@ p {
 
 .messages-fields {
   padding: 2pt;
-  flex: 80%;
-
+  flex: 90%;
 }
 
 .message-empty {
@@ -95,7 +92,7 @@ p {
 
 .bottom-panel {
   position: fixed;
-  bottom: 10px;
+  bottom: 5px;
   left: 5px;
   width: 100%;
 
@@ -149,6 +146,8 @@ p {
   --bbColor: #3575ff !important;
 }
 
+
+/* TODO fix overflow */
 /* body {
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -159,7 +158,6 @@ body::-webkit-scrollbar {
   display: none;
 } */
 
-
-html, body {
+/* html, body {
   height: 100%;    
-}
+} */
