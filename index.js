@@ -23,7 +23,8 @@ function fetchMessage() {
     }
   });
 
-  // myHistoryTimeout();
+  scrollToLastMessage();
+  myHistoryTimeout();
 }
 
 function generateMessageList(data) {
@@ -55,8 +56,14 @@ function sendMessage() {
     error: function (error) {
       console.log("error" + error);
     }
+  }).done( function (response) {
+    $("#current_message_text").val('')
   });
 
+  scrollToLastMessage();
+}
+
+function scrollToLastMessage(){
   document.getElementById(messageId).scrollIntoView();
 }
 
