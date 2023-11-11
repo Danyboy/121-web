@@ -5,7 +5,7 @@ document.onkeydown = function (event) {
 }
 
 messageId = 0;
-currentUser = "Dany";
+currentUser = '';
 
 function myLogin(){
   var nickname = $("#Nickname").val();
@@ -35,6 +35,12 @@ function generateMessageList(data) {
 }
 
 function sendMessage() {
+
+  if (!currentUser){
+    openForm();
+    return;
+  }
+
   authorName = currentUser;
 
   var messageText = $("#current_message_text").val();
