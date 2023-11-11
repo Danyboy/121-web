@@ -39,6 +39,9 @@ function sendMessage() {
 
   var messageText = $("#current_message_text").val();
   addNewMessage(messageText, authorName)
+
+
+
   $.ajax({
     url: "./app/send.php",
     method: "POST",
@@ -51,15 +54,16 @@ function sendMessage() {
       "text": messageText
     }),
     success: function (response) {
-      $("#current_message_text").val('')
+      $("#current_message_text").val('');
     },
     error: function (error) {
       console.log("error" + error);
     }
   }).done( function (response) {
-    $("#current_message_text").val('')
+    $("#current_message_text").val('');
   });
 
+  // $("#current_message_text").val('');
   scrollToLastMessage();
 }
 
