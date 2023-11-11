@@ -4,7 +4,7 @@ document.onkeydown = function (event) {
   }
 }
 
-messageId = 5;
+messageId = 0;
 currentUser = "Dany";
 
 function myLogin(){
@@ -30,6 +30,7 @@ function fetchMessage() {
 function generateMessageList(data) {
   for (var i = 0; i < data.messages.length; i++) {
     addNewMessage(data.messages[i].text, data.messages[i].author)
+    messageId++;
   }
 }
 
@@ -39,8 +40,6 @@ function sendMessage() {
 
   var messageText = $("#current_message_text").val();
   addNewMessage(messageText, authorName)
-
-
 
   $.ajax({
     url: "./app/send.php",
