@@ -63,7 +63,7 @@ function sendMessage() {
     $("#current_message_text").val('');
   });
 
-  // $("#current_message_text").val('');
+  $("#current_message_text").val('');
   scrollToLastMessage();
 }
 
