@@ -11,6 +11,7 @@ function myLogin(){
   var nickname = $("#Nickname").val();
   localStorage.setItem("currentUser", nickname);
   currentUser = nickname;
+  $("#myLogin").hide();
 }
 
 fetchMessage();
@@ -100,7 +101,7 @@ function addNewMessage(messageText, authorName) {
 }
 
 function myHistoryTimeout() {
-  myTimer = 1000 * 5;
+  myTimer = 1000 * 8;
   setTimeout(function () {
     fetchMessage();
   }, myTimer);

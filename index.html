@@ -9,7 +9,7 @@
     <script src="./index.js"></script>
 
     <meta charset="UTF-8" />
-    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0" /> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta property="og:type" content="website">
     <meta property="og:url" content="http://121.efnez.ru/">
     <meta property="og:image" content="http://121.efnez.ru/images/stas.png">
@@ -41,21 +41,21 @@
                 </div>
             </div>
             <!-- <div class="message-empty"></div> -->
+            <div class="bottom-panel">
+                <button class="open-button" id="myLogin" onclick="openForm()">Login / Register</button>
+                <div class="send-container">
+                    <div class="form-field">
+                        <input type="text" autofocus id="current_message_text" class="text-filed" action>
+                        </input>
+                    </div>
+                    <div class="button-field">
+                        <button type="button" onclick="sendMessage()" id="messageSend">Send</button>
+                    </div>
+                </div>
+            </div>
+            </div>
         </div>
-    </div>
 
-    <div class="bottom-panel">
-        <button class="open-button" onclick="openForm()">Login / Register</button>
-        <div class="send-container">
-            <div class="form-field">
-                <input type="text" id="current_message_text" class="text-filed" action>
-                </input>
-            </div>
-            <div class="button-field">
-                <button type="button" onclick="sendMessage()" id="messageSend">Send</button>
-            </div>
-        </div>
-    </div>
 
 
     <div class="my-popup" id="myForm">
@@ -84,6 +84,8 @@
 
         if (!currentUser){
             openForm();
+        } else {
+            $("#myLogin").hide();
         }
     </script>
 </body>

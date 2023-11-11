@@ -1,9 +1,4 @@
 body {
-  /* display: flex;
-  flex-direction: column; */
-
-  height: 92%;
-
   background: var(--background-color);
   font-family: system-ui, -apple-system, "Roboto", sans-serif;
   --text-color: #1e1e1e;
@@ -56,7 +51,6 @@ p {
 .messages {
   flex: var(--right-bar-size);
   margin-left: 4pt;
-  /* height: 100%; */
 
   display: flex;
   flex-direction: column;
@@ -67,9 +61,10 @@ p {
   display: flex;
 
   /* scroll */
-  flex: 1 1 auto;
-  overflow: auto;
-  /* overflow-y: scroll; */
+  /* flex: 1 1 auto; */
+  flex: 1;
+  overflow-y: scroll;
+  overflow-x: hidden;
   min-height: 0px;
 }
 
@@ -86,15 +81,16 @@ p {
 
 .message-empty {
   padding: 2pt;
-  flex: 10%;
+  flex: 0%;
   height: 50px;
 }
 
 .bottom-panel {
-  position: fixed;
+  /* position: fixed; */
+  /* flex: 10%; */
   bottom: 5px;
   left: 5px;
-  width: 100%;
+  /* width: 100%; */
 
   display: flex;
 }
@@ -123,7 +119,7 @@ p {
 }
 
 .text-filed {
-  width: 100%;
+  width: 98%;
   outline: none;
   border: none;
 
@@ -144,6 +140,14 @@ p {
 [message-color] {
   background: #3575ff !important;
   --bbColor: #3575ff !important;
+}
+
+@media screen and (max-width: 600px) {
+  .chats {
+    visibility: hidden;
+    display: none;
+  }
+
 }
 
 
