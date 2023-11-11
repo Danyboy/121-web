@@ -48,7 +48,7 @@
         <button class="open-button" onclick="openForm()">Login / Register</button>
         <div class="send-container">
             <div class="form-field">
-                <input type="text" autofocus id="current_message_text" class="text-filed" action>
+                <input type="text" id="current_message_text" class="text-filed" action>
                 </input>
             </div>
             <div class="button-field">
@@ -63,7 +63,7 @@
             <h1>Please Login</h1>
 
             <label for="Nickname"><b>Nickname</b></label>
-            <input type="text" placeholder="Enter Nickname" name="Nickname" id="Nickname" required>
+            <input type="text" autofocus placeholder="Enter Nickname" name="Nickname" id="Nickname" required>
 
             <!-- <label for="psw"><b>Password</b></label>
             <input type="password" placeholder="Enter Password" name="psw" required> -->
@@ -80,6 +80,10 @@
 
         function closeForm() {
             document.getElementById("myForm").style.display = "none";
+        }
+
+        if (!currentUser){
+            openForm();
         }
     </script>
 </body>

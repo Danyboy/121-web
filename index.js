@@ -5,10 +5,11 @@ document.onkeydown = function (event) {
 }
 
 messageId = 0;
-currentUser = '';
+currentUser = localStorage.getItem("currentUser");;
 
 function myLogin(){
   var nickname = $("#Nickname").val();
+  localStorage.setItem("currentUser", nickname);
   currentUser = nickname;
 }
 
