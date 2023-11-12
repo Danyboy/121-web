@@ -1,1 +1,4 @@
 app/chats/*
+.DS_Store
+app/users/*
+tmp/

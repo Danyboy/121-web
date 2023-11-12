@@ -1,0 +1,8 @@
+2023/apple-touch-icon-precomposed.png" failed (2: No such file or directory), client: 47.60.53.15, server: 121.efnez.ru, request: "GET /apple-touch-icon-precomposed.png HTTP/1.1", host: "121.efnez.ru"
+2023/apple-touch-icon.png" failed (2: No such file or directory), client: 47.60.53.15, server: 121.efnez.ru, request: "GET /apple-touch-icon.png HTTP/1.1", host: "121.efnez.ru"
+2023/apple-touch-icon.png" failed (2: No such file or directory), client: 47.60.53.15, server: 121.efnez.ru, request: "GET /apple-touch-icon.png HTTP/1.1", host: "121.efnez.ru"
+2023/apple-touch-icon-precomposed.png" failed (2: No such file or directory), client: 47.60.53.15, server: 121.efnez.ru, request: "GET /apple-touch-icon-precomposed.png HTTP/1.1", host: "121.efnez.ru"
+2023/apple-touch-icon-120x120-precomposed.png" failed (2: No such file or directory), client: 47.60.53.15, server: 121.efnez.ru, request: "GET /apple-touch-icon-120x120-precomposed.png HTTP/1.1", host: "121.efnez.ru"
+2023/apple-touch-icon-120x120.png" failed (2: No such file or directory), client: 47.60.53.15, server: 121.efnez.ru, request: "GET /apple-touch-icon-120x120.png HTTP/1.1", host: "121.efnez.ru"
+2023/apple-touch-icon.png" failed (2: No such file or directory), client: 47.60.53.15, server: 121.efnez.ru, request: "GET /apple-touch-icon.png HTTP/1.1", host: "121.efnez.ru"
+2023/apple-touch-icon.png" failed (2: No such file or directory), client: 47.60.53.15, server: 121.efnez.ru, request: "GET /apple-touch-icon.png HTTP/1.1", host: "121.efnez.ru"
