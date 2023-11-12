@@ -10,6 +10,7 @@ currentUser = localStorage.getItem("currentUser");
 fetchMessageWithRepeat();
 
 function myLogin(){
+  localStorage.setItem("activeChat", "");
   $("#chats").empty()
   $("#messages").empty()
 
