@@ -28,8 +28,8 @@ function saveMessage($jsonData)
     array_push($tempArray['messages'], $data);
     $jsonData = json_encode($tempArray, JSON_UNESCAPED_UNICODE);
     file_put_contents($chatFile, $jsonData);
-
-    var_dump(http_response_code(200));
+    http_response_code(200);
+    echo('{"status":200}');
   } else {
     var_dump(http_response_code(404));
     error_log("You give me empty query");

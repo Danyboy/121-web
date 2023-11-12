@@ -155,7 +155,7 @@ function sendMessage() {
       $("#current_message_text").val('');
     },
     error: function (error) {
-      console.log("error" + error);
+      console.log("error " + error);
     }
   }).done(function (response) {
     $("#current_message_text").val('');
