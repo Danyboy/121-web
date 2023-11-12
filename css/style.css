@@ -30,11 +30,14 @@ p {
   height: 100%;
 }
 
-.chats {
+.chats-row {
   flex: var(--left-bar-size);
+
+  display: flex;
+  flex-direction: column;
 }
 
-.chat {
+.chats {
   height: 30pt;
 
   margin-left: 4pt;
@@ -42,6 +45,13 @@ p {
   padding: 4pt;
 
   box-sizing: border-box;
+
+  /* scroll */
+  flex: 1;
+  /* overflow-y: scroll; */
+  overflow-y: auto;
+  overflow-x: hidden;
+  min-height: 0px;  
 }
 
 .name {
@@ -61,7 +71,8 @@ p {
 
   /* scroll */
   flex: 1;
-  overflow-y: scroll;
+  overflow-y: auto;
+  /* overflow-y: scroll; */
   overflow-x: hidden;
   min-height: 0px;
 }
@@ -144,7 +155,7 @@ p {
 }
 
 @media screen and (max-width: 600px) {
-  .chats {
+  .chats-row {
     visibility: hidden;
     display: none;
   }

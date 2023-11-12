@@ -7,6 +7,7 @@ document.onkeydown = function (event) {
 var messageId = 0;
 var chatId = 0;
 var lastMessageDate = '';
+var currentChatId = 'chat_0'
 
 currentUser = localStorage.getItem("currentUser");
 fetchMessageWithRepeat();
@@ -58,7 +59,7 @@ function addNewChat(chatName, chatFolder, lastChatFile, myChatId) {
   chatHistory = chatFolder + "/" + lastChatFile;
 
   var newChat =
-    `<div speech-bubble chat-non-active-color
+    `<div speech-bubble style="--bbColor:#3580ff"
       onclick="showChat('` + myChatId + `', '` + chatHistory + `')"
       id=` + myChatId + `>
     <h3>` + chatName + `</h3>
@@ -70,8 +71,12 @@ function addNewChat(chatName, chatFolder, lastChatFile, myChatId) {
 }
 
 function showChat(myChatId, chatHistory) {
-  // TODO make chat id tab active
-  $('#' + myChatId).attr('speech-bubble message-color');
+  // Change colocrs for prev chat id to unfocused
+  if (currentChatId){
+    $('#' + currentChatId).attr('style', '--bbColor:#3580ff');
+  }
+  currentChatId = myChatId;
+  $('#' + myChatId).attr('style', '--bbColor:#3575ff');
 
   if (chatHistory) {
     localStorage.setItem("activeChatId", myChatId);
@@ -97,14 +102,6 @@ function fetchMessage() {
   console.log("Get messages for chat: " + chatHistory)
   $.get("./app/chats/" + chatHistory, function (data, status) {
     if (data) {
-      // lastMessage = data.messages[data.messages.length - 1];
-      // console.log(lastMessage);
-      // console.log(lastMessageDate);
-      // console.log(lastMessage.date);
-      // if (lastMessageDate && lastMessage.date === lastMessageDate) {
-      //   console.log("No new messages");
-      //   return;
-      // }
       $("#messages").empty()
       generateMessageList(data);
     }
@@ -203,12 +200,13 @@ function addNewMessage(messageText, authorName) {
 }
 
 function myHistoryTimeout() {
-  myTimer = 1000 * 6;
+  myTimer = 1000 * 8;
   setTimeout(function () {
     fetchMessageWithRepeat();
   }, myTimer);
 }
 
+// Dont work, broke myHistoryTimeout - start working every myTimerForScroll
 function myScrollToLastMessage() {
   myTimerForScroll = 500 * 1;
   setTimeout(function () {

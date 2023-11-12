@@ -10,6 +10,7 @@
   padding: var(--bbPadding);
   position: relative;
 
+  cursor: pointer;
   /* padding: 4pt;
   box-sizing: border-box;
   margin: 4pt; */
