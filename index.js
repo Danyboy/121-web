@@ -153,17 +153,17 @@ function sendMessage() {
     }),
     success: function (response) {
       $("#current_message_text").val('');
+      scrollToLastMessage();
+      messageId++;    
     },
     error: function (error) {
       console.log("error " + error);
     }
   }).done(function (response) {
-    $("#current_message_text").val('');
+    // $("#current_message_text").val('');
   });
 
-  $("#current_message_text").val('');
-  scrollToLastMessage();
-  messageId++;
+  // $("#current_message_text").val('');
 }
 
 function scrollToLastMessage() {
