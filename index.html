@@ -1,7 +1,7 @@
 <html lang="ru">
 
 <head>
-    <title>121 messangr</title>
+    <title>121 messenger</title>
     <link rel="stylesheet" href="./css/chat.css" />
     <link rel="stylesheet" href="./css/style.css" />
     <link rel="stylesheet" href="./css/login.css" />
@@ -9,7 +9,6 @@
     <script src="./index.js"></script>
 
     <meta charset="UTF-8" />
-    <!-- <meta name="viewport" content="width=device-width, initial-scale=1" /> -->
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,shrink-to-fit=no,viewport-fit=cover">
     <meta property="og:type" content="website">
     <meta property="og:url" content="http://121.efnez.ru/">
@@ -22,7 +21,7 @@
         <div class="chats">
             <h2>121</h2>
             <h2>Chats</h2>
-            <div class="chat" id="chat_1">
+            <div class="chat" id="chats">
                 <div speech-bubble message-color>
                     <h3>Firts chat</h3>
                 </div>
@@ -61,8 +60,8 @@
         <form class="form-container">
             <h1>Please Login</h1>
 
-            <label for="Nickname"><b>Nickname</b></label>
-            <input type="text" autofocus placeholder="Enter Nickname" name="Nickname" id="Nickname" required>
+            <label for="nickname"><b><Noscript></Noscript>Nickname</b></label>
+            <input type="text" autofocus placeholder="Enter nickname" name="nickname" id="nickname" required>
 
             <!-- <label for="psw"><b>Password</b></label>
             <input type="password" placeholder="Enter Password" name="psw" required> -->
@@ -75,6 +74,7 @@
     <script>
         function openForm() {
             document.getElementById("myForm").style.display = "block";
+            $("#nickname").val(localStorage.getItem("currentUser"));
         }
 
         function closeForm() {
@@ -83,9 +83,10 @@
 
         if (!currentUser){
             openForm();
-            $("#Nickname").focus();
+            $("#nickname").focus();
         } else {
-            $("#myLogin").hide();
+            // $("#myLogin").hide();
+            getChats();
             $("#current_message_text").focus();
         }
     </script>

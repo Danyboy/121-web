@@ -5,32 +5,96 @@ document.onkeydown = function (event) {
 }
 
 messageId = 0;
-currentUser = localStorage.getItem("currentUser");;
+chatId = 0;
+currentUser = localStorage.getItem("currentUser");
+fetchMessageWithRepeat();
 
 function myLogin(){
-  var nickname = $("#Nickname").val();
+  $("#chats").empty()
+  $("#messages").empty()
+
+  var nickname = $("#nickname").val();
   localStorage.setItem("currentUser", nickname);
   currentUser = nickname;
-  $("#myLogin").hide();
+  // $("#myLogin").hide();
   $("#current_message_text").focus();
+  getChats();
 }
 
-fetchMessage();
+function getChats(){
+  $.get("./app/users/" + currentUser.toLowerCase() + ".json", function (data, status) {
+    if (data) {
+      $("#messages").empty()
+      generateChatList(data);
+    }
+  });
+}
+
+function generateChatList(data){
+  $("#chats").empty()
+
+  for (var i = 0; i < data.chats.length; i++) {
+    addNewChat(data.chats[i].chat_name, data.chats[i].chat_folder, data.chats[i].last_chat_file, chatId)
+    chatId++;
+  }
+}
+
+function addNewChat(chatName, chatFolder, lastChatFile, chatId) {
+  chatHistory = chatFolder + "/" + lastChatFile;
+
+  var newChat =
+  `<div speech-bubble chat-non-active-color
+      onclick="showChat('` + chatId + `', '` + chatHistory + `')"
+      id=` + chatId + `>
+    <h3>` + chatName + `</h3>
+  </div>`;
+
+  localStorage.setItem(chatName, nickname);
+
+  $("#chats").append($(newChat));
+}
+
+function showChat(chatId, chatHistory){
+  // TODO make chat id tab active
+  $('#' + chatId).attr('speech-bubble message-color');
+  localStorage.setItem("activeChat", chatHistory);
+  fetchMessage();
+}
 
 function fetchMessage() {
-  if (!currentUser){
-    myHistoryTimeout();
+  chatHistory = localStorage.getItem("activeChat");
+
+  if (!chatHistory){
     return;
   }
 
-  console.log("Get messages")
-  $.get("./app/chats/stas_XFRTS4FT/start_01.json", function (data, status) {
+  if (!currentUser){
+    return;
+  }
+
+  console.log("Get messages for chat: " + chatHistory)
+  $.get("./app/chats/" + chatHistory, function (data, status) {
     if (data) {
       $("#messages").empty()
       generateMessageList(data);
     }
   });
+}
 
+function fetchMessageWithRepeat() {
+  chatHistory = localStorage.getItem("activeChat");
+
+  if (!chatHistory){
+    myHistoryTimeout();
+    return;
+  }
+
+  if (!currentUser){
+    myHistoryTimeout();
+    return;
+  }
+
+  fetchMessage();
   myHistoryTimeout();
 }
 
@@ -104,7 +168,7 @@ function addNewMessage(messageText, authorName) {
 function myHistoryTimeout() {
   myTimer = 1000 * 8;
   setTimeout(function () {
-    fetchMessage();
+    fetchMessageWithRepeat();
   }, myTimer);
 }
 

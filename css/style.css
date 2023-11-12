@@ -54,14 +54,12 @@ p {
 
   display: flex;
   flex-direction: column;
-  /* align-self: flex-end; */
 }
 
 .chat-row {
   display: flex;
 
   /* scroll */
-  /* flex: 1 1 auto; */
   flex: 1;
   overflow-y: scroll;
   overflow-x: hidden;
@@ -86,11 +84,8 @@ p {
 }
 
 .bottom-panel {
-  /* position: fixed; */
-  /* flex: 10%; */
   bottom: 5px;
   left: 5px;
-  /* width: 100%; */
 
   display: flex;
 }
@@ -136,10 +131,16 @@ p {
   border: none;
 }
 
-
 [message-color] {
   background: #3575ff !important;
   --bbColor: #3575ff !important;
+  cursor: pointer;
+}
+
+[chat-non-active-color] {
+  background: #3580ff !important;
+  --bbColor: #3580ff !important;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 600px) {
