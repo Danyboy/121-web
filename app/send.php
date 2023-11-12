@@ -2,15 +2,19 @@
 
 $jsonData = file_get_contents('php://input');
 
-saveMessage();
+saveMessage($jsonData);
 
-function saveMessage()
+// error_log(var_dump($jsonData));
+
+function saveMessage($jsonData)
 {
   if (!empty($jsonData)) {
 
-    $currentChat = $jsonData['current_chat'];
+    $data = json_decode($jsonData, true);
+    $currentChat = $data['current_chat'];
+
     if (!empty($currentChat)) {
-      $chatId = "stas_XFRTS4FT/start_01.json";
+      $chatId = $currentChat;
     } else {
       var_dump(http_response_code(404));
       error_log("No such chat");
@@ -18,8 +22,6 @@ function saveMessage()
     }
 
     $chatFile = "./chats/" . $chatId;
-
-    $data = json_decode($jsonData, true);
 
     $inplement = file_get_contents($chatFile);
     $tempArray = json_decode($inplement, true);
