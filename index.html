@@ -18,7 +18,7 @@
 
 <body>
     <div class="row">
-        <div class="chats-row">
+        <div class="chats-column" id="chats-column">
             <h2>121</h2>
             <h2>Chats</h2>
             <div class="chats" id="chats">
@@ -26,16 +26,21 @@
                     <h3>Firts chat</h3>
                 </div>
             </div>
+            <!-- <div speech-bubble message-color>
+                <h3>Add new chat</h3>
+            </div> -->
         </div>
 
-        <div class="messages">
+        <div class="messages" id="messages-full-column">
             <h2>Messages</h2>
-            <div class="chat-row">
+            <div class="messages-column">
                 <div class="messages-fields" id="messages">
+                    <!-- TODO remove this div -->
                 </div>
             </div>
             <div class="bottom-panel">
-                <button class="open-button" id="myLogin" onclick="openForm()">Login / Register</button>
+                <!-- <button class="open-button chat-button" id="myChats" onclick="showChats()">Chats</button> -->
+                <button class="open-button login-button" id="myLogin" onclick="openForm()">Login / Register</button>
                 <div class="send-container">
                     <div class="form-field">
                         <input autocomplete="off" type="text" id="current_message_text" class="text-filed" action>
@@ -78,7 +83,7 @@
             openForm();
             $("#nickname").focus();
         } else {
-            // $("#myLogin").hide();
+            $("#myLogin").hide();
             getChats();
             $("#current_message_text").focus();
         }

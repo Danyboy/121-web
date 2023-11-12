@@ -30,7 +30,7 @@ p {
   height: 100%;
 }
 
-.chats-row {
+.chats-column {
   flex: var(--left-bar-size);
 
   display: flex;
@@ -65,7 +65,7 @@ p {
   flex-direction: column;
 }
 
-.chat-row {
+.messages-column {
   display: flex;
 
   /* scroll */
@@ -99,6 +99,15 @@ p {
   display: flex;
 }
 
+.chat-button {
+  flex: 20%;
+  padding-right: 10px;
+}
+
+.login-button {
+  flex: 40%;
+}
+
 .open-button {
   background-color: var(--active-button-color);
   color: var(--text-color);
@@ -107,7 +116,7 @@ p {
   cursor: pointer;
   opacity: 0.8;
 
-  flex: var(--left-bar-size);
+  /* flex: var(--left-bar-size); */
 }
 
 .send-container {
@@ -147,11 +156,17 @@ p {
 }
 
 @media screen and (max-width: 600px) {
-  .chats-row {
+  .chats-column {
     visibility: hidden;
     display: none;
   }
+}
 
+@media screen and (min-width: 600px) {
+  .chat-button {
+    visibility: hidden;
+    display: none;
+  }
 }
 
 

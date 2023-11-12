@@ -8,9 +8,28 @@ var messageId = 0;
 var chatId = 0;
 var lastMessageDate = '';
 var currentChatId = 'chat_0'
+var chatDisplay = false;
 
 currentUser = localStorage.getItem("currentUser");
 fetchMessageWithRepeat();
+
+function showChats() {
+  if (!chatDisplay) {
+    $('#chats-column').css("visibility", "visible");
+    $('#chats-column').css("display", "unset");
+    $('#messages-full-column').css("visibility", "hidden");
+    $('#messages-full-column').css("display", "none");
+    chatDisplay = true;
+  } else {
+    $('#chats-column').css("visibility", "hidden");
+    $('#chats-column').css("display", "none");  
+    $('#messages-full-column').css("visibility", "visible");
+    $('#messages-full-column').css("display", "unset");
+    chatDisplay = false;
+  }
+
+  // console.log("Need to implement");
+}
 
 function myLogin() {
   localStorage.setItem("activeChat", "");
@@ -20,7 +39,7 @@ function myLogin() {
   var nickname = $("#nickname").val();
   localStorage.setItem("currentUser", nickname);
   currentUser = nickname;
-  // $("#myLogin").hide();
+  $("#myLogin").hide();
   $("#current_message_text").focus();
   getChats();
 }
