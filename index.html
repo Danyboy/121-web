@@ -53,8 +53,8 @@
                     </div>
                 </div>
             </div>
-            </div>
         </div>
+    </div>
 
     <div class="my-popup" id="myForm">
         <form class="form-container">
@@ -81,7 +81,7 @@
             document.getElementById("myForm").style.display = "none";
         }
 
-        if (!currentUser){
+        if (!currentUser) {
             openForm();
             $("#nickname").focus();
         } else {
@@ -89,6 +89,7 @@
             getChats();
             $("#current_message_text").focus();
         }
+
     </script>
 </body>
 

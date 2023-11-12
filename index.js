@@ -34,10 +34,6 @@ function getChats() {
       } else {
         $('#chat_0').click();
       }
-
-      if (messageId) {
-        scrollToLastMessage();
-      }
     }
   });
 }
@@ -75,6 +71,7 @@ function showChat(myChatId, chatHistory) {
     localStorage.setItem("activeChatId", myChatId);
     localStorage.setItem("activeChat", chatHistory);
     fetchMessage();
+    myScrollToLastMessage();
   } else {
     console.log("No chat")
   }
@@ -122,7 +119,6 @@ function generateMessageList(data) {
     addNewMessage(data.messages[i].text, data.messages[i].author)
     messageId++;
   }
-  // scrollToLastMessage();
 }
 
 function sendMessage() {
@@ -157,21 +153,24 @@ function sendMessage() {
     success: function (response) {
       $("#current_message_text").val('');
       scrollToLastMessage();
-      messageId++;    
+      messageId++;
     },
     error: function (error) {
       console.log("error " + error);
     }
-  }).done(function (response) {
-    // $("#current_message_text").val('');
   });
-
-  // $("#current_message_text").val('');
 }
 
 function scrollToLastMessage() {
-  console.log(messageId - 1);
-  document.getElementById(messageId - 1).scrollIntoView();
+
+  // lastMessageId = $('#messages:last-child').attr('id');
+  // if (lastMessageId){
+  //   document.getElementById(lastMessageId).scrollIntoView();
+  // }
+
+  if (document.querySelector('#messages > div:last-of-type')){
+    document.querySelector('#messages > div:last-of-type').scrollIntoView();
+  }
 }
 
 function addNewMessage(messageText, authorName) {
@@ -197,3 +196,9 @@ function myHistoryTimeout() {
   }, myTimer);
 }
 
+function myScrollToLastMessage() {
+  myTimer = 200 * 1;
+  setTimeout(function () {
+    scrollToLastMessage();
+  }, myTimer);
+}
