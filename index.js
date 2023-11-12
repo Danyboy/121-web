@@ -75,7 +75,7 @@ function showChat(myChatId, chatHistory) {
     localStorage.setItem("activeChatId", myChatId);
     localStorage.setItem("activeChat", chatHistory);
     fetchMessage();
-    myScrollToLastMessage();
+    // myScrollToLastMessage();
   } else {
     console.log("No chat")
   }
@@ -195,9 +195,12 @@ function myHistoryTimeout() {
 }
 
 function myScrollToLastMessage() {
-  myTimerForScroll = 200 * 1;
+  myTimerForScroll = 500 * 1;
   setTimeout(function () {
+    console.log("Focused on chat and")
     activateChat();
     scrollToLastMessage();
   }, myTimerForScroll);
+
+  clearInterval(myTimerForScroll);
 }
