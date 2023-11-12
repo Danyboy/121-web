@@ -28,14 +28,18 @@ function getChats() {
       $("#messages").empty();
       generateChatList(data);
 
-      activeChatId = localStorage.getItem("activeChatId");
-      if (activeChatId) {
-        $('#' + activeChatId).click();
-      } else {
-        $('#chat_0').click();
-      }
+      activateChat();
     }
   });
+}
+
+function activateChat(){
+  activeChatId = localStorage.getItem("activeChatId");
+  if (activeChatId) {
+    $('#' + activeChatId).click();
+  } else {
+    $('#chat_0').click();
+  }
 }
 
 function generateChatList(data) {
@@ -199,6 +203,8 @@ function myHistoryTimeout() {
 function myScrollToLastMessage() {
   myTimer = 200 * 1;
   setTimeout(function () {
+    activateChat();
+    
     scrollToLastMessage();
   }, myTimer);
 }
