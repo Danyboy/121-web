@@ -20,7 +20,6 @@ function myLogin() {
   // $("#myLogin").hide();
   $("#current_message_text").focus();
   getChats();
-
 }
 
 function getChats() {
@@ -34,6 +33,10 @@ function getChats() {
         $('#' + activeChatId).click();
       } else {
         $('#chat_0').click();
+      }
+
+      if (messageId) {
+        scrollToLastMessage();
       }
     }
   });
