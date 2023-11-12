@@ -26,8 +26,8 @@ function getChats() {
   $.get("./app/users/" + currentUser.toLowerCase() + ".json", function (data, status) {
     if (data) {
       $("#messages").empty();
-      generateChatList(data);
 
+      generateChatList(data);
       activateChat();
     }
   });
@@ -166,12 +166,6 @@ function sendMessage() {
 }
 
 function scrollToLastMessage() {
-
-  // lastMessageId = $('#messages:last-child').attr('id');
-  // if (lastMessageId){
-  //   document.getElementById(lastMessageId).scrollIntoView();
-  // }
-
   if (document.querySelector('#messages > div:last-of-type')){
     document.querySelector('#messages > div:last-of-type').scrollIntoView();
   }
@@ -194,17 +188,16 @@ function addNewMessage(messageText, authorName) {
 }
 
 function myHistoryTimeout() {
-  myTimer = 1000 * 8;
+  myTimer = 1000 * 6;
   setTimeout(function () {
     fetchMessageWithRepeat();
   }, myTimer);
 }
 
 function myScrollToLastMessage() {
-  myTimer = 200 * 1;
+  myTimerForScroll = 200 * 1;
   setTimeout(function () {
     activateChat();
-    
     scrollToLastMessage();
-  }, myTimer);
+  }, myTimerForScroll);
 }
