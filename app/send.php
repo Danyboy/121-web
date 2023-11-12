@@ -29,6 +29,7 @@ function saveMessage()
 
     var_dump(http_response_code(200));
   } else {
+    var_dump(http_response_code(404));
     error_log("You give me empty query");
   }
 
