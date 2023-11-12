@@ -48,7 +48,6 @@ p {
 
   /* scroll */
   flex: 1;
-  /* overflow-y: scroll; */
   overflow-y: auto;
   overflow-x: hidden;
   min-height: 0px;  
@@ -72,7 +71,6 @@ p {
   /* scroll */
   flex: 1;
   overflow-y: auto;
-  /* overflow-y: scroll; */
   overflow-x: hidden;
   min-height: 0px;
 }
@@ -128,16 +126,10 @@ p {
   width: 98%;
   outline: none;
   border: none;
-
-  /* margin: 4pt;
-  border: 4pt; */
 }
 
 .button-field {
   flex: 5%;
-  /* margin: 4pt;
-  border: 4pt; */
-
   outline: none;
   border: none;
 }
