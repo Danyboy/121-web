@@ -111,9 +111,15 @@ function sendMessage() {
   if (!currentUser){
     openForm();
     return;
+  } else {
+    authorName = currentUser;
   }
 
-  authorName = currentUser;
+  chatHistory = localStorage.getItem("activeChat");
+
+  if (!chatHistory){
+    return;
+  }
 
   var messageText = $("#current_message_text").val();
   addNewMessage(messageText, authorName)
@@ -125,6 +131,7 @@ function sendMessage() {
     contentType: "application/json; charset=utf-8",
     data: JSON.stringify({
       "date": Date.now(),
+      "current_chat": chatHistory,
       "author": authorName,
       "author_id": "2",
       "text": messageText
