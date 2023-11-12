@@ -9,7 +9,7 @@ chatId = 0;
 currentUser = localStorage.getItem("currentUser");
 fetchMessageWithRepeat();
 
-function myLogin(){
+function myLogin() {
   localStorage.setItem("activeChat", "");
   $("#chats").empty()
   $("#messages").empty()
@@ -20,33 +20,42 @@ function myLogin(){
   // $("#myLogin").hide();
   $("#current_message_text").focus();
   getChats();
+
 }
 
-function getChats(){
+function getChats() {
   $.get("./app/users/" + currentUser.toLowerCase() + ".json", function (data, status) {
     if (data) {
-      $("#messages").empty()
+      $("#messages").empty();
       generateChatList(data);
+
+      activeChatId = localStorage.getItem("activeChatId");
+      if (activeChatId) {
+        $('#' + activeChatId).click();
+      } else {
+        $('#chat_0').click();
+      }
     }
   });
 }
 
-function generateChatList(data){
+function generateChatList(data) {
   $("#chats").empty()
 
   for (var i = 0; i < data.chats.length; i++) {
-    addNewChat(data.chats[i].chat_name, data.chats[i].chat_folder, data.chats[i].last_chat_file, chatId)
+    myChatId = "chat_" + chatId;
+    addNewChat(data.chats[i].chat_name, data.chats[i].chat_folder, data.chats[i].last_chat_file, myChatId)
     chatId++;
   }
 }
 
-function addNewChat(chatName, chatFolder, lastChatFile, chatId) {
+function addNewChat(chatName, chatFolder, lastChatFile, myChatId) {
   chatHistory = chatFolder + "/" + lastChatFile;
 
   var newChat =
-  `<div speech-bubble chat-non-active-color
-      onclick="showChat('` + chatId + `', '` + chatHistory + `')"
-      id=` + chatId + `>
+    `<div speech-bubble chat-non-active-color
+      onclick="showChat('` + myChatId + `', '` + chatHistory + `')"
+      id=` + myChatId + `>
     <h3>` + chatName + `</h3>
   </div>`;
 
@@ -55,21 +64,27 @@ function addNewChat(chatName, chatFolder, lastChatFile, chatId) {
   $("#chats").append($(newChat));
 }
 
-function showChat(chatId, chatHistory){
+function showChat(myChatId, chatHistory) {
   // TODO make chat id tab active
-  $('#' + chatId).attr('speech-bubble message-color');
-  localStorage.setItem("activeChat", chatHistory);
-  fetchMessage();
+  $('#' + myChatId).attr('speech-bubble message-color');
+
+  if (chatHistory) {
+    localStorage.setItem("activeChatId", myChatId);
+    localStorage.setItem("activeChat", chatHistory);
+    fetchMessage();
+  } else {
+    console.log("No chat")
+  }
 }
 
 function fetchMessage() {
   chatHistory = localStorage.getItem("activeChat");
 
-  if (!chatHistory){
+  if (!chatHistory) {
     return;
   }
 
-  if (!currentUser){
+  if (!currentUser) {
     return;
   }
 
@@ -85,12 +100,12 @@ function fetchMessage() {
 function fetchMessageWithRepeat() {
   chatHistory = localStorage.getItem("activeChat");
 
-  if (!chatHistory){
+  if (!chatHistory) {
     myHistoryTimeout();
     return;
   }
 
-  if (!currentUser){
+  if (!currentUser) {
     myHistoryTimeout();
     return;
   }
@@ -108,8 +123,7 @@ function generateMessageList(data) {
 }
 
 function sendMessage() {
-
-  if (!currentUser){
+  if (!currentUser) {
     openForm();
     return;
   } else {
@@ -118,7 +132,7 @@ function sendMessage() {
 
   chatHistory = localStorage.getItem("activeChat");
 
-  if (!chatHistory){
+  if (!chatHistory) {
     return;
   }
 
@@ -143,7 +157,7 @@ function sendMessage() {
     error: function (error) {
       console.log("error" + error);
     }
-  }).done( function (response) {
+  }).done(function (response) {
     $("#current_message_text").val('');
   });
 
@@ -152,7 +166,7 @@ function sendMessage() {
   messageId++;
 }
 
-function scrollToLastMessage(){
+function scrollToLastMessage() {
   console.log(messageId - 1);
   document.getElementById(messageId - 1).scrollIntoView();
 }
