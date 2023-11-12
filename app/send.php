@@ -16,9 +16,8 @@ function saveMessage($jsonData)
     if (!empty($currentChat)) {
       $chatId = $currentChat;
     } else {
-      var_dump(http_response_code(404));
-      error_log("No such chat");
-      return;
+      error_log("No such chat, use default chat");
+      $chatId = "stas_XFRTS4FT/start_01.json";
     }
 
     $chatFile = "./chats/" . $chatId;

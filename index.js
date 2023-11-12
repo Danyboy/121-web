@@ -4,8 +4,10 @@ document.onkeydown = function (event) {
   }
 }
 
-messageId = 0;
-chatId = 0;
+var messageId = 0;
+var chatId = 0;
+var lastMessageDate = '';
+
 currentUser = localStorage.getItem("currentUser");
 fetchMessageWithRepeat();
 
@@ -33,7 +35,7 @@ function getChats() {
   });
 }
 
-function activateChat(){
+function activateChat() {
   activeChatId = localStorage.getItem("activeChatId");
   if (activeChatId) {
     $('#' + activeChatId).click();
@@ -95,6 +97,14 @@ function fetchMessage() {
   console.log("Get messages for chat: " + chatHistory)
   $.get("./app/chats/" + chatHistory, function (data, status) {
     if (data) {
+      // lastMessage = data.messages[data.messages.length - 1];
+      // console.log(lastMessage);
+      // console.log(lastMessageDate);
+      // console.log(lastMessage.date);
+      // if (lastMessageDate && lastMessage.date === lastMessageDate) {
+      //   console.log("No new messages");
+      //   return;
+      // }
       $("#messages").empty()
       generateMessageList(data);
     }
@@ -120,12 +130,15 @@ function fetchMessageWithRepeat() {
 
 function generateMessageList(data) {
   for (var i = 0; i < data.messages.length; i++) {
-    addNewMessage(data.messages[i].text, data.messages[i].author)
+    let currentMessage = data.messages[i];
+    addNewMessage(currentMessage.text, currentMessage.author);
+    lastMessageDate = currentMessage.date;
     messageId++;
   }
 }
 
 function sendMessage() {
+
   if (!currentUser) {
     openForm();
     return;
@@ -140,6 +153,7 @@ function sendMessage() {
   }
 
   var messageText = $("#current_message_text").val();
+  var messageDate = Date.now();
   addNewMessage(messageText, authorName)
 
   $.ajax({
@@ -148,7 +162,7 @@ function sendMessage() {
     dataType: "json",
     contentType: "application/json; charset=utf-8",
     data: JSON.stringify({
-      "date": Date.now(),
+      "date": messageDate,
       "current_chat": chatHistory,
       "author": authorName,
       "author_id": "2",
@@ -156,6 +170,7 @@ function sendMessage() {
     }),
     success: function (response) {
       $("#current_message_text").val('');
+      lastMessageDate = messageDate;
       scrollToLastMessage();
       messageId++;
     },
@@ -166,7 +181,7 @@ function sendMessage() {
 }
 
 function scrollToLastMessage() {
-  if (document.querySelector('#messages > div:last-of-type')){
+  if (document.querySelector('#messages > div:last-of-type')) {
     document.querySelector('#messages > div:last-of-type').scrollIntoView();
   }
 }
