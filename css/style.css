@@ -50,7 +50,7 @@ p {
   flex: 1;
   overflow-y: auto;
   overflow-x: hidden;
-  min-height: 0px;  
+  min-height: 0px;
 }
 
 .name {
@@ -135,6 +135,7 @@ p {
   width: 98%;
   outline: none;
   border: none;
+  resize: none;
 }
 
 .button-field {
@@ -160,6 +161,54 @@ p {
     visibility: hidden;
     display: none;
   }
+
+  ::-webkit-input-placeholder {
+    /* WebKit browsers */
+    color: transparent;
+  }
+
+  :-moz-placeholder {
+    /* Mozilla Firefox 4 to 18 */
+    color: transparent;
+  }
+
+  ::-moz-placeholder {
+    /* Mozilla Firefox 19+ */
+    color: transparent;
+  }
+
+  :-ms-input-placeholder {
+    /* Internet Explorer 10+ */
+    color: transparent;
+  }
+
+  input::placeholder {
+    color: transparent;
+  }
+
+  textarea::-webkit-input-placeholder {
+    /* WebKit browsers */
+    color: transparent;
+  }
+
+  textarea:-moz-placeholder {
+    /* Mozilla Firefox 4 to 18 */
+    color: transparent;
+  }
+
+  textarea::-moz-placeholder {
+    /* Mozilla Firefox 19+ */
+    color: transparent;
+  }
+
+  textarea:-ms-input-placeholder {
+    /* Internet Explorer 10+ */
+    color: transparent;
+  }
+
+  textarea::placeholder {
+    color: transparent;
+  }
 }
 
 @media screen and (min-width: 600px) {
@@ -167,20 +216,5 @@ p {
     visibility: hidden;
     display: none;
   }
+
 }
-
-
-/* TODO fix overflow */
-/* body {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-  overflow-y: scroll; 
-}
-
-body::-webkit-scrollbar {
-  display: none;
-} */
-
-/* html, body {
-  height: 100%;    
-} */

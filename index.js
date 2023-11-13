@@ -1,5 +1,5 @@
 document.onkeydown = function (event) {
-  if (event.key == 'Enter') {
+  if ((event.ctrlKey || event.altKey) && event.key == 'Enter') {
     sendMessage();
   }
 }
@@ -27,8 +27,6 @@ function showChats() {
     $('#messages-full-column').css("display", "unset");
     chatDisplay = false;
   }
-
-  // console.log("Need to implement");
 }
 
 function myLogin() {
@@ -90,7 +88,7 @@ function addNewChat(chatName, chatFolder, lastChatFile, myChatId) {
 }
 
 function showChat(myChatId, chatHistory) {
-  // Change colocrs for prev chat id to unfocused
+  // Change colors for prev chat id to unfocused
   if (currentChatId){
     $('#' + currentChatId).attr('style', '--bbColor:#3580ff');
   }
@@ -101,7 +99,6 @@ function showChat(myChatId, chatHistory) {
     localStorage.setItem("activeChatId", myChatId);
     localStorage.setItem("activeChat", chatHistory);
     fetchMessage(true);
-    // myScrollToLastMessage();
   } else {
     console.log("No chat")
   }
@@ -171,7 +168,7 @@ function sendMessage() {
     return;
   }
 
-  var messageText = $("#current_message_text").val();
+  var messageText = replaceUnsafe($("#current_message_text").val()).replace(/\r\n|\r|\n/g,"<br/>");
   var messageDate = Date.now();
   addNewMessage(messageText, authorName)
 
@@ -197,6 +194,10 @@ function sendMessage() {
       console.log("error " + error);
     }
   });
+}
+
+function replaceUnsafe(message){
+  return message.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;').replaceAll("'", '&#039;');
 }
 
 function scrollToLastMessage() {
@@ -232,7 +233,7 @@ function myHistoryTimeout() {
 function myScrollToLastMessage() {
   myTimerForScroll = 500 * 1;
   setTimeout(function () {
-    console.log("Focused on chat and")
+    console.log("Focused on chat and scroll")
     activateChat();
     scrollToLastMessage();
   }, myTimerForScroll);
