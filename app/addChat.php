@@ -20,11 +20,16 @@ function login($jsonData)
       error_log("No chat user or current user");
       return;
     }
-    
+
+    //Get first user for first position in chat folder
+    $chatFolderName = $userId . "_" . $newChatWithUserId;
+
     // Add chat to initialaser
-    $chatFullPath = addChatToUser($userId, $newChatWithUserId);
+    $chatFullPath = addChatToUser($userId, $newChatWithUserId, $chatFolderName);
     // Add chat to second user
-    addChatToUser($newChatWithUserId, $userId);
+    addChatToUser($newChatWithUserId, $userId, $chatFolderName);
+
+    createChatJson($chatFullPath, $userId);
 
     http_response_code(200);
     echo ('{"status":200, 
@@ -35,13 +40,8 @@ function login($jsonData)
   }
 }
 
-function addChatToUser($userId, $newChatWithUserId)
+function addChatToUser($userId, $newChatWithUserId, $chatFolderName)
 {
-  //Get first user for first position in chat folder
-  $userArray = [$userId, $newChatWithUserId];
-  asort($userArray);
-  $chatFolderName = $userArray[0] . "_" . $userArray[1];
-
   $userFile = "./users/" . $userId . ".json";
 
   if (file_exists($userFile)) {
@@ -71,4 +71,15 @@ function addChatToUser($userId, $newChatWithUserId)
     var_dump(http_response_code(404));
     error_log("Check new chat data");
   }
+}
+
+function createChatJson($filePath, $newChatWithUserId)
+{
+  $newChatData = array(
+    "chat_name" => $newChatWithUserId,
+    "chat_id" => "1",
+    "messages" => []
+  );
+
+  file_put_contents($filePath, $newChatData);
 }
