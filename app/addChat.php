@@ -28,12 +28,10 @@ function login($jsonData)
     $chatFullPath = addChatToUser($userId, $newChatWithUserId, $chatFolderName);
     // Add chat to second user
     addChatToUser($newChatWithUserId, $userId, $chatFolderName);
-
     createChatJson($chatFolderName, $chatFullPath, $userId);
 
     http_response_code(200);
-    echo ('{"status":200, 
-      "chat_folder": "' . $chatFullPath . '"}');
+    echo ('{"status":200, "chat_folder": "' . $chatFullPath . '"}');
   } else {
     var_dump(http_response_code(404));
     error_log("You give me empty login data");
@@ -61,8 +59,6 @@ function addChatToUser($userId, $newChatWithUserId, $chatFolderName)
     array_push($tempArray['chats'], $newChatData);
     $jsonData = json_encode($tempArray, JSON_UNESCAPED_UNICODE);
     file_put_contents($userFile, $jsonData);
-
-    // http_response_code(200);
 
     $chatFullPath = $chatFolderName . '/' . $last_chat_file;
 
@@ -92,9 +88,4 @@ function createChatJson($chatFolderName, $filePath, $newChatWithUserId)
   if (!file_exists($fullChatPath)) {
     file_put_contents($fullChatPath, json_encode($newChatData, JSON_UNESCAPED_UNICODE));
   } 
-
-    // else {
-    // var_dump(http_response_code(404));
-    // error_log("[addChat] Chat file already exist: " . $filePath);
-  //}
 }
