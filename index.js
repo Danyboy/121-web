@@ -100,14 +100,14 @@ function showChat(myChatId, chatHistory) {
   if (chatHistory) {
     localStorage.setItem("activeChatId", myChatId);
     localStorage.setItem("activeChat", chatHistory);
-    fetchMessage();
+    fetchMessage(true);
     // myScrollToLastMessage();
   } else {
     console.log("No chat")
   }
 }
 
-function fetchMessage() {
+function fetchMessage(runCallback) {
   chatHistory = localStorage.getItem("activeChat");
 
   if (!chatHistory) {
@@ -123,6 +123,9 @@ function fetchMessage() {
     if (data) {
       $("#messages").empty()
       generateMessageList(data);
+      if (runCallback) {
+        scrollToLastMessage();
+      }
     }
   });
 }
