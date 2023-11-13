@@ -29,7 +29,7 @@ function login($jsonData)
     // Add chat to second user
     addChatToUser($newChatWithUserId, $userId, $chatFolderName);
 
-    createChatJson($chatFullPath, $userId);
+    createChatJson($chatFolderName, $chatFullPath, $userId);
 
     http_response_code(200);
     echo ('{"status":200, 
@@ -73,13 +73,21 @@ function addChatToUser($userId, $newChatWithUserId, $chatFolderName)
   }
 }
 
-function createChatJson($filePath, $newChatWithUserId)
+function createChatJson($chatFolderName, $filePath, $newChatWithUserId)
 {
   $newChatData = array(
     "chat_name" => $newChatWithUserId,
     "chat_id" => "1",
     "messages" => []
   );
-
-  file_put_contents($filePath, $newChatData);
+  
+  if (!file_exists($chatFolderName)) {
+    mkdir($chatFolderName, 0777, true);
+  }
+  if (!file_exists($filePath)) {
+    file_put_contents($filePath, $newChatData);
+  } else {
+    var_dump(http_response_code(404));
+    error_log("[addChat] Chat file already exist: " . $filePath);
+  }
 }
