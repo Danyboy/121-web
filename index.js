@@ -37,7 +37,7 @@ function myLogin() {
   var nickname = $("#nickname").val();
   localStorage.setItem("currentUser", nickname);
   currentUser = nickname;
-  $("#myLogin").hide();
+  // $("#myLogin").hide();
   $("#current_message_text").focus();
   getChats();
 }
