@@ -28,8 +28,7 @@ function login($jsonData)
 
     http_response_code(200);
     echo ('{"status":200, 
-      "chat_folder": "' . $chatFullPath . '"
-      "}');
+      "chat_folder": "' . $chatFullPath . '"}');
   } else {
     var_dump(http_response_code(404));
     error_log("You give me empty login data");
