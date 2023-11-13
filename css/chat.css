@@ -4,7 +4,7 @@
   --bbColor: grey;
   --bbArrowSize: 1.5rem;
   --bbBorderRadius: 0.25rem;
-  --bbPadding: 10pt;
+  --bbPadding: 6pt;
   background: var(--bbColor);
   border-radius: var(--bbBorderRadius);
   padding: var(--bbPadding);
