@@ -22,26 +22,26 @@ function login($jsonData)
       return;
     }
 
-    $userFile = "./users/" . $userId . "json";
-
-    $defaultChat = array(
-      "chat_name"  => "Public chat",
-      "last_message_date" => "2023-11-11T11:11:30.000Z",
-      "last_message"  => "Привет, давай сделаем свой месенджер?",
-      "chat_folder" => "public",
-      "last_chat_file" => "start_01.json",
-    );
-
-    $userInfo = array(
-      "username"  => $userId,
-      "password" => $password,
-      "chats" => array($defaultChat)
-    );
+    $userFile = "./users/" . $userId . ".json";
 
     if (file_exists($userFile)) {
       // check user password
       // password_verify(string $password, string $hash): bool
     } else {
+      $defaultChat = array(
+        "chat_name"  => "Public chat",
+        "last_message_date" => "2023-11-11T11:11:30.000Z",
+        "last_message"  => "Привет, давай сделаем свой месенджер?",
+        "chat_folder" => "public",
+        "last_chat_file" => "start_01.json",
+      );
+  
+      $userInfo = array(
+        "username"  => $userId,
+        "password" => $password,
+        "chats" => array($defaultChat)
+      );
+  
       // create new file
       $jsonData = json_encode($userInfo, JSON_UNESCAPED_UNICODE);
       file_put_contents($userFile, $jsonData);
