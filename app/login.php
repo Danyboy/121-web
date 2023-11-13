@@ -11,8 +11,8 @@ function login($jsonData)
   if (!empty($jsonData)) {
 
     $data = json_decode($jsonData, true);
-    $currentUser = $data['user'];
-    $password = password_hash($data['password'], PASSWORD_DEFAULT);
+    $currentUser = strtolower($data['user']);
+    // $password = password_hash($data['password'], PASSWORD_DEFAULT);
 
     if (!empty($currentUser)) {
       $userId = $currentUser;
@@ -38,7 +38,7 @@ function login($jsonData)
   
       $userInfo = array(
         "username"  => $userId,
-        "password" => $password,
+        // "password" => $password,
         "chats" => array($defaultChat)
       );
   
