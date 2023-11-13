@@ -235,6 +235,11 @@ function sendMessage() {
   }
 
   var messageText = replaceUnsafe($("#current_message_text").val()).replace(/\r\n|\r|\n/g, "<br/>");
+  
+  if(!messageText){
+    return;
+  }
+  
   var messageDate = Date.now();
   addNewMessage(messageText, authorName)
 
