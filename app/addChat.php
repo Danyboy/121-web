@@ -22,12 +22,14 @@ function login($jsonData)
     }
     
     // Add chat to initialaser
-    addChatToUser($userId, $newChatWithUserId);
+    $chatFullPath = addChatToUser($userId, $newChatWithUserId);
     // Add chat to second user
     addChatToUser($newChatWithUserId, $userId);
 
     http_response_code(200);
-    echo ('{"status":200}');
+    echo ('{"status":200, 
+      "chat_folder": "' . $chatFullPath . '"
+      "}');
   } else {
     var_dump(http_response_code(404));
     error_log("You give me empty login data");
@@ -65,9 +67,7 @@ function addChatToUser($userId, $newChatWithUserId)
 
     $chatFullPath = $chatFolderName . '/' . $last_chat_file;
 
-    echo ('{"status":200, 
-      "chat_folder": "' . $chatFullPath . '"
-      "}');
+    return $chatFullPath;
   } else {
     var_dump(http_response_code(404));
     error_log("Check new chat data");
