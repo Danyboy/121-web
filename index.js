@@ -43,13 +43,30 @@ function myLogin() {
   $("#chats").empty()
   $("#messages").empty()
 
-  var nickname = $("#nickname").val().replace(/ /g,'');
-  localStorage.setItem("currentUser", nickname);
-  currentUser = nickname;
-  $("#myLogin").hide();
-  $("#current_message_text").focus();
-  getChats();
-  $("#myLogout").show();
+  let nickname = $("#nickname").val().replace(/ /g,'');
+  let password = $("#password").val();
+
+  $.ajax({
+    url: "./app/login.php",
+    method: "POST",
+    dataType: "json",
+    contentType: "application/json; charset=utf-8",
+    data: JSON.stringify({
+      "user": nickname,
+      "password": password
+    }),
+    success: function (response) {
+      localStorage.setItem("currentUser", nickname);
+      currentUser = nickname;
+      $("#myLogin").hide();
+      $("#current_message_text").focus();
+      getChats();
+      $("#myLogout").show();
+    },
+    error: function (error) {
+      console.log("error " + error);
+    }
+  });
 }
 
 function getChats() {
