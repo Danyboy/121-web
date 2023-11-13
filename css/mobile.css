@@ -1,0 +1,63 @@
+
+@media screen and (max-width: 600px) {
+  .chats-column {
+    visibility: hidden;
+    display: none;
+  }
+
+  ::-webkit-input-placeholder {
+    /* WebKit browsers */
+    color: transparent;
+  }
+
+  :-moz-placeholder {
+    /* Mozilla Firefox 4 to 18 */
+    color: transparent;
+  }
+
+  ::-moz-placeholder {
+    /* Mozilla Firefox 19+ */
+    color: transparent;
+  }
+
+  :-ms-input-placeholder {
+    /* Internet Explorer 10+ */
+    color: transparent;
+  }
+
+  input::placeholder {
+    color: transparent;
+  }
+
+  textarea::-webkit-input-placeholder {
+    /* WebKit browsers */
+    color: transparent;
+  }
+
+  textarea:-moz-placeholder {
+    /* Mozilla Firefox 4 to 18 */
+    color: transparent;
+  }
+
+  textarea::-moz-placeholder {
+    /* Mozilla Firefox 19+ */
+    color: transparent;
+  }
+
+  textarea:-ms-input-placeholder {
+    /* Internet Explorer 10+ */
+    color: transparent;
+  }
+
+  textarea::placeholder {
+    color: transparent;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .chat-button {
+    visibility: hidden;
+    display: none;
+  }
+
+}
