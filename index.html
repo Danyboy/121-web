@@ -2,9 +2,10 @@
 
 <head>
     <title>121 messenger</title>
-    <link rel="stylesheet" href="./css/chat.css" />
-    <link rel="stylesheet" href="./css/style.css" />
-    <link rel="stylesheet" href="./css/login.css" />
+    <link rel="stylesheet" href="./css/chat.css"/>
+    <link rel="stylesheet" href="./css/style.css"/>
+    <link rel="stylesheet" href="./css/login.css"/>
+    <link rel="stylesheet" href="./css/mobile.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="./index.js"></script>
 
@@ -32,7 +33,12 @@
         </div>
 
         <div class="messages" id="messages-full-column">
-            <h2>Messages</h2>
+            <div class="logout-field"> 
+                <div class="messages-field-logout">
+                    <h2>Messages</h2>
+                </div>
+                <button class="open-button logout-button" id="myLogout" onclick="myLogout()">X</button>    
+            </div>
             <div class="messages-column">
                 <div class="messages-fields" id="messages">
                     <!-- TODO remove this div -->
@@ -81,10 +87,12 @@
         if (!currentUser) {
             openForm();
             $("#nickname").focus();
+            $("#myLogout").hide();
         } else {
-            // $("#myLogin").hide();
+            $("#myLogin").hide();
             getChats();
             $("#current_message_text").focus();
+            $("#myLogout").show();
         }
 
     </script>

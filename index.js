@@ -29,6 +29,15 @@ function showChats() {
   }
 }
 
+function myLogout() {
+  localStorage.setItem("activeChat", "");
+  $("#chats").empty()
+  $("#messages").empty()
+  currentUser = localStorage.setItem("currentUser", '');
+  $("#myLogin").show();
+  openForm();
+}
+
 function myLogin() {
   localStorage.setItem("activeChat", "");
   $("#chats").empty()
@@ -37,9 +46,10 @@ function myLogin() {
   var nickname = $("#nickname").val().replace(/ /g,'');
   localStorage.setItem("currentUser", nickname);
   currentUser = nickname;
-  // $("#myLogin").hide();
+  $("#myLogin").hide();
   $("#current_message_text").focus();
   getChats();
+  $("#myLogout").show();
 }
 
 function getChats() {
@@ -76,7 +86,7 @@ function addNewChat(chatName, chatFolder, lastChatFile, myChatId) {
   chatHistory = chatFolder + "/" + lastChatFile;
 
   var newChat =
-    `<div speech-bubble style="--bbColor:#3580ff"
+    `<div speech-bubble style="--bbColor:#3580ff;cursor: pointer;"
       onclick="showChat('` + myChatId + `', '` + chatHistory + `')"
       id=` + myChatId + `>
     <h3>` + chatName + `</h3>
@@ -90,10 +100,10 @@ function addNewChat(chatName, chatFolder, lastChatFile, myChatId) {
 function showChat(myChatId, chatHistory) {
   // Change colors for prev chat id to unfocused
   if (currentChatId){
-    $('#' + currentChatId).attr('style', '--bbColor:#3580ff');
+    $('#' + currentChatId).attr('style', '--bbColor:#3580ff;cursor: pointer;');
   }
   currentChatId = myChatId;
-  $('#' + myChatId).attr('style', '--bbColor:#3575ff');
+  $('#' + myChatId).attr('style', '--bbColor:#3575ff;cursor: pointer;');
 
   if (chatHistory) {
     localStorage.setItem("activeChatId", myChatId);
