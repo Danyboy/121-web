@@ -62,7 +62,7 @@ function addChatToUser($userId, $newChatWithUserId, $chatFolderName)
     $jsonData = json_encode($tempArray, JSON_UNESCAPED_UNICODE);
     file_put_contents($userFile, $jsonData);
 
-    http_response_code(200);
+    // http_response_code(200);
 
     $chatFullPath = $chatFolderName . '/' . $last_chat_file;
 
@@ -80,14 +80,21 @@ function createChatJson($chatFolderName, $filePath, $newChatWithUserId)
     "chat_id" => "1",
     "messages" => []
   );
-  
-  if (!file_exists($chatFolderName)) {
-    mkdir($chatFolderName, 0777, true);
+ 
+  $myChatsFolder = "chats/";
+  $chatPath = $myChatsFolder . $chatFolderName;
+  if (!file_exists($chatPath)) {
+    mkdir($chatPath, 0777, true);
   }
-  if (!file_exists($filePath)) {
-    file_put_contents($filePath, $newChatData);
-  } else {
-    var_dump(http_response_code(404));
-    error_log("[addChat] Chat file already exist: " . $filePath);
-  }
+
+  $fullChatPath = $myChatsFolder . $filePath;
+
+  if (!file_exists($fullChatPath)) {
+    file_put_contents($fullChatPath, json_encode($newChatData, JSON_UNESCAPED_UNICODE));
+  } 
+
+    // else {
+    // var_dump(http_response_code(404));
+    // error_log("[addChat] Chat file already exist: " . $filePath);
+  //}
 }
