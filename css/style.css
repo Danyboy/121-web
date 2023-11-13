@@ -84,6 +84,7 @@ p {
 .messages-fields {
   padding: 2pt;
   flex: 90%;
+  font-size: 15pt;
 }
 
 .message-empty {
@@ -160,6 +161,7 @@ p {
   outline: none;
   border: none;
   resize: none;
+  font-size: 15pt;
 }
 
 .button-field {
