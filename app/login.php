@@ -4,8 +4,6 @@ $jsonData = file_get_contents('php://input');
 
 login($jsonData);
 
-// error_log(var_dump($jsonData));
-
 function login($jsonData)
 {
   if (!empty($jsonData)) {
@@ -51,7 +49,7 @@ function login($jsonData)
     echo('{"status":200}');
   } else {
     var_dump(http_response_code(404));
-    error_log("You give me empty login data");
+    error_log("Check login data");
   }
 }
 

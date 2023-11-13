@@ -111,6 +111,19 @@ p {
 .logout-button {
   flex: 5%;
 }
+
+.new-chat {
+  display: flex;
+}
+
+.new-chat-user {
+  flex: 2;
+}
+
+.add-chat-button {
+  flex: 1;
+}
+
 .messages-field-logout {
   flex: 95%;
 }

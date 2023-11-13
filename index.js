@@ -22,7 +22,7 @@ function showChats() {
     chatDisplay = true;
   } else {
     $('#chats-column').css("visibility", "hidden");
-    $('#chats-column').css("display", "none");  
+    $('#chats-column').css("display", "none");
     $('#messages-full-column').css("visibility", "visible");
     $('#messages-full-column').css("display", "unset");
     chatDisplay = false;
@@ -43,7 +43,7 @@ function myLogin() {
   $("#chats").empty()
   $("#messages").empty()
 
-  let nickname = $("#nickname").val().replace(/ /g,'');
+  let nickname = $("#nickname").val().replace(/ /g, '');
   let password = $("#password").val();
 
   $.ajax({
@@ -73,7 +73,6 @@ function getChats() {
   $.get("./app/users/" + currentUser.toLowerCase() + ".json", function (data, status) {
     if (data) {
       $("#messages").empty();
-
       generateChatList(data);
       activateChat();
     }
@@ -93,18 +92,58 @@ function generateChatList(data) {
   $("#chats").empty()
 
   for (var i = 0; i < data.chats.length; i++) {
-    myChatId = "chat_" + chatId;
-    addNewChat(data.chats[i].chat_name, data.chats[i].chat_folder, data.chats[i].last_chat_file, myChatId)
-    chatId++;
+    chatFullPath = data.chats[i].chat_folder + "/" +data.chats[i].last_chat_file
+    addNewChat(data.chats[i].chat_name, chatFullPath)
   }
 }
 
-function addNewChat(chatName, chatFolder, lastChatFile, myChatId) {
-  chatHistory = chatFolder + "/" + lastChatFile;
+var isNewChatShows = false;
 
+function addNewChatMenu() {
+  if (!isNewChatShows) {
+    $("#new-chat").show();
+    isNewChatShows = true;
+    $('#add-new-chat-text').html('Hide')
+  } else {
+    $("#new-chat").hide();
+    isNewChatShows = false;
+    $('#add-new-chat-text').html('Add new chat')
+  }
+}
+
+function addNewChatUser() {
+  let newChatUser = $('#new-chat-user').val().toLowerCase().replace(/ /g, '');
+
+  $.ajax({
+    url: "./app/addChat.php",
+    method: "POST",
+    dataType: "json",
+    contentType: "application/json; charset=utf-8",
+    data: JSON.stringify({
+      "user": currentUser,
+      "newChatUser": newChatUser
+    }),
+    success: function (response) {
+      let chatFolder = response.chat_folder;
+      addNewChat(newChatUser, chatFolder);
+      $("#new-chat").hide();
+    },
+    error: function (error) {
+      console.log("error " + error);
+    }
+  });
+
+}
+
+function createNewChatId(){
+  return "chat_" + chatId++;
+}
+
+function addNewChat(chatName, chatFolder) {
+  let myChatId = createNewChatId();
   var newChat =
     `<div speech-bubble style="--bbColor:#3580ff;cursor: pointer;"
-      onclick="showChat('` + myChatId + `', '` + chatHistory + `')"
+      onclick="showChat('` + myChatId + `', '` + chatFolder + `')"
       id=` + myChatId + `>
     <h3>` + chatName + `</h3>
   </div>`;
@@ -116,7 +155,7 @@ function addNewChat(chatName, chatFolder, lastChatFile, myChatId) {
 
 function showChat(myChatId, chatHistory) {
   // Change colors for prev chat id to unfocused
-  if (currentChatId){
+  if (currentChatId) {
     $('#' + currentChatId).attr('style', '--bbColor:#3580ff;cursor: pointer;');
   }
   currentChatId = myChatId;
@@ -195,7 +234,7 @@ function sendMessage() {
     return;
   }
 
-  var messageText = replaceUnsafe($("#current_message_text").val()).replace(/\r\n|\r|\n/g,"<br/>");
+  var messageText = replaceUnsafe($("#current_message_text").val()).replace(/\r\n|\r|\n/g, "<br/>");
   var messageDate = Date.now();
   addNewMessage(messageText, authorName)
 
@@ -223,7 +262,7 @@ function sendMessage() {
   });
 }
 
-function replaceUnsafe(message){
+function replaceUnsafe(message) {
   return message.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;').replaceAll("'", '&#039;');
 }
 

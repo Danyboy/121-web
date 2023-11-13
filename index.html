@@ -2,10 +2,10 @@
 
 <head>
     <title>121 messenger</title>
-    <link rel="stylesheet" href="./css/chat.css"/>
-    <link rel="stylesheet" href="./css/style.css"/>
-    <link rel="stylesheet" href="./css/login.css"/>
-    <link rel="stylesheet" href="./css/mobile.css"/>
+    <link rel="stylesheet" href="./css/chat.css" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/login.css" />
+    <link rel="stylesheet" href="./css/mobile.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="./index.js"></script>
 
@@ -27,24 +27,30 @@
                     <h3>Firts chat</h3>
                 </div>
             </div>
-            <!-- <div speech-bubble message-color>
-                <h3>Add new chat</h3>
-            </div> -->
+            <div>
+                <div speech-bubble chat-non-active-color onclick="addNewChatMenu()">
+                    <h3 id="add-new-chat-text">Add new chat</h3>
+                </div>
+                <div class="new-chat" id="new-chat" style="display: none;">
+                    <input type="text" class="new-chat-user text-filed" autocomplete="off" placeholder="Nickname" name="nickname" id="new-chat-user">
+                    <button class="open-button add-chat-button" id="addNewChatUser" onclick="addNewChatUser()">+</button>
+                </div>
+            </div>
         </div>
 
         <div class="messages" id="messages-full-column">
-            <div class="logout-field"> 
+            <div class="logout-field">
                 <div class="messages-field-logout">
                     <h2>Messages</h2>
                 </div>
-                <button class="open-button logout-button" id="myLogout" onclick="myLogout()">X</button>    
+                <button class="open-button logout-button" id="myLogout" onclick="myLogout()">X</button>
             </div>
             <div class="messages-column">
                 <div class="messages-fields" id="messages">
                     <div class="message" speech-bubble="" pright="" acenter="" message-color="" id="533">
                         <div class="title">Dany</div>
                         <p>Hi, this is a simple and easy messenger for <b>one to one</b> communication, without any unnecessary things =)</p>
-                      </div>
+                    </div>
                 </div>
             </div>
             <div class="bottom-panel">
