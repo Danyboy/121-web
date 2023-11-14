@@ -2,7 +2,7 @@
 Simple and easy messenger for one to one communication, without any unnecessary things.
 
 ## Info
-Simple messager example
+121 messanger web ui preview
 
 ![screenshots](./images/example.png)
 
