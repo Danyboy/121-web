@@ -10,6 +10,6 @@ Simple and easy messenger for one to one communication, without any unnecessary 
 
 Install nginx and php-fpm.
 
-Copy [nginx config](./config/121.efnez.ru.conf) to nginx config directory /etc/nginx/sites-enabled.d
+Copy [nginx config](./config/121.example.com.conf) to nginx config directory /etc/nginx/sites-enabled.d
 
 Copy code to nginx served directory, example: /var/www/121
