@@ -9,5 +9,7 @@ Simple and easy messenger for one to one communication, without any unnecessary 
 ## Installation
 
 Install nginx and php-fpm.
-Copy (nginx config)[./config/121.efnez.ru.conf] to 
+
+Copy [nginx config](./config/121.efnez.ru.conf) to 
+
 Copy code to nginx served directory
