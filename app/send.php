@@ -4,8 +4,6 @@ $jsonData = file_get_contents('php://input');
 
 saveMessage($jsonData);
 
-// error_log(var_dump($jsonData));
-
 function saveMessage($jsonData)
 {
   if (!empty($jsonData)) {

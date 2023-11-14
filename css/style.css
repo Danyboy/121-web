@@ -84,7 +84,7 @@ p {
 .messages-fields {
   padding: 2pt;
   flex: 90%;
-  font-size: 15pt;
+  font-size: 14pt;
 }
 
 .message-empty {
@@ -140,8 +140,6 @@ p {
   border: none;
   cursor: pointer;
   opacity: 0.8;
-
-  /* flex: var(--left-bar-size); */
 }
 
 .send-container {
@@ -161,7 +159,7 @@ p {
   outline: none;
   border: none;
   resize: none;
-  font-size: 15pt;
+  font-size: 14pt;
 }
 
 .button-field {

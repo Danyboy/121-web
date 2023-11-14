@@ -9,34 +9,10 @@ var chatId = 0;
 var lastMessageDate = '';
 var currentChatId = 'chat_0'
 var chatDisplay = false;
+var isAddChatShows = false;
 
 currentUser = localStorage.getItem("currentUser");
 fetchMessageWithRepeat();
-
-function showChats() {
-  if (!chatDisplay) {
-    $('#chats-column').css("visibility", "visible");
-    $('#chats-column').css("display", "unset");
-    $('#messages-full-column').css("visibility", "hidden");
-    $('#messages-full-column').css("display", "none");
-    chatDisplay = true;
-  } else {
-    $('#chats-column').css("visibility", "hidden");
-    $('#chats-column').css("display", "none");
-    $('#messages-full-column').css("visibility", "visible");
-    $('#messages-full-column').css("display", "unset");
-    chatDisplay = false;
-  }
-}
-
-function myLogout() {
-  localStorage.setItem("activeChat", "");
-  $("#chats").empty()
-  $("#messages").empty()
-  currentUser = localStorage.setItem("currentUser", '');
-  $("#myLogin").show();
-  openForm();
-}
 
 function myLogin() {
   localStorage.setItem("activeChat", "");
@@ -69,6 +45,31 @@ function myLogin() {
   });
 }
 
+function myLogout() {
+  localStorage.setItem("activeChat", "");
+  $("#chats").empty()
+  $("#messages").empty()
+  currentUser = localStorage.setItem("currentUser", '');
+  $("#myLogin").show();
+  openLoginForm();
+}
+
+function showChats() {
+  if (!chatDisplay) {
+    $('#chats-column').css("visibility", "visible");
+    $('#chats-column').css("display", "unset");
+    $('#messages-full-column').css("visibility", "hidden");
+    $('#messages-full-column').css("display", "none");
+    chatDisplay = true;
+  } else {
+    $('#chats-column').css("visibility", "hidden");
+    $('#chats-column').css("display", "none");
+    $('#messages-full-column').css("visibility", "visible");
+    $('#messages-full-column').css("display", "unset");
+    chatDisplay = false;
+  }
+}
+
 function getChats() {
   $.get("./app/users/" + currentUser.toLowerCase() + ".json", function (data, status) {
     if (data) {
@@ -77,15 +78,6 @@ function getChats() {
       activateChat();
     }
   });
-}
-
-function activateChat() {
-  activeChatId = localStorage.getItem("activeChatId");
-  if (activeChatId) {
-    $('#' + activeChatId).click();
-  } else {
-    $('#chat_0').click();
-  }
 }
 
 function generateChatList(data) {
@@ -97,16 +89,23 @@ function generateChatList(data) {
   }
 }
 
-var isNewChatShows = false;
+function activateChat() {
+  activeChatId = localStorage.getItem("activeChatId");
+  if (activeChatId) {
+    $('#' + activeChatId).click();
+  } else {
+    $('#chat_0').click();
+  }
+}
 
-function addNewChatMenu() {
-  if (!isNewChatShows) {
+function addChatMenu() {
+  if (!isAddChatShows) {
     $("#new-chat").show();
-    isNewChatShows = true;
+    isAddChatShows = true;
     $('#add-new-chat-text').html('Hide')
   } else {
     $("#new-chat").hide();
-    isNewChatShows = false;
+    isAddChatShows = false;
     $('#add-new-chat-text').html('Add new chat')
   }
 }
@@ -220,9 +219,8 @@ function generateMessageList(data) {
 }
 
 function sendMessage() {
-
   if (!currentUser) {
-    openForm();
+    openLoginForm();
     return;
   } else {
     authorName = currentUser;

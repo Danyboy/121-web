@@ -61,6 +61,4 @@ function addChats($userFile, $userInfo, $data){
 
       $jsonData = json_encode($userInfo, JSON_UNESCAPED_UNICODE);
       file_put_contents($userFile, $jsonData);
-
-      // create chat file
 }
