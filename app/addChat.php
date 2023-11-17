@@ -57,7 +57,7 @@ function addChatToUser($userId, $newChatWithUserId, $chatFolderName)
     $tempArray = json_decode($newChatJsonFile, true);
 
     array_push($tempArray['chats'], $newChatData);
-    $jsonData = json_encode($tempArray, JSON_UNESCAPED_UNICODE);
+    $jsonData = json_encode($tempArray, JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE);
     file_put_contents($userFile, $jsonData);
 
     $chatFullPath = $chatFolderName . '/' . $last_chat_file;

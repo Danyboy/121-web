@@ -23,7 +23,7 @@ function saveMessage($jsonData)
     $inplement = file_get_contents($chatFile);
     $tempArray = json_decode($inplement, true);
     array_push($tempArray['messages'], $data);
-    $jsonData = json_encode($tempArray, JSON_UNESCAPED_UNICODE);
+    $jsonData = json_encode($tempArray, JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE);
     file_put_contents($chatFile, $jsonData);
     http_response_code(200);
     echo('{"status":200}');

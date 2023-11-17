@@ -41,7 +41,7 @@ function login($jsonData)
       );
   
       // create new file
-      $jsonData = json_encode($userInfo, JSON_UNESCAPED_UNICODE);
+      $jsonData = json_encode($userInfo, JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE);
       file_put_contents($userFile, $jsonData);
     }
 
